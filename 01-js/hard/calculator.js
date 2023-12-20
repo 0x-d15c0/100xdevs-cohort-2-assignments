@@ -15,7 +15,43 @@
 
   Once you've implemented the logic, test your code by running
 */
+class Calculator {
+  constructor(){
+    let result;
+  }
+  add(num){
+    result += num;
+  }
+  sub(num){
+    result -= num;
+  }
+  mul(num){
+    result *= num;
+  }
+  div(num){
+    if (num === 0){
+      console.log("Cant divide by zero lil nigga")
+    }
+    result /= num;
+  }
+  clear(){
+    result = 0;
+  }
 
-class Calculator {}
+  calculate(expression) {
+    const cleanExpression = expression.replace(/\s+/g, "");
+    if (!/^[0-9+\-*/(). ]+$/.test(cleanExpression)) {
+      throw new Error("Invalid expression");
+    }
 
+    try {
+      this.result = eval(cleanExpression);
+    } catch (error) {
+      throw new Error("Invalid expression");
+    }
+  }
+}
+
+const calculator = new Calculator();
+console.log(Calculator.calculate('10 +   2 *    (   6 - (4 + 1) / 2) + 7').get)
 module.exports = Calculator;
